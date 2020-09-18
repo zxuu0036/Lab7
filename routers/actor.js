@@ -94,5 +94,19 @@ module.exports = {
         }, function (err, data) {
             res.json(data);
         })
+    },
+    deleteMovies: function (req, res) {
+        Actor.findByIdAndUpdate({
+            _id: req.params.id
+        }, {
+            $set: {
+                "movies": []
+            }
+        }, {
+            upsert: false
+        }, function (err, data) {
+            res.json(data);
+            console.log("err");
+        })
     }
 };
